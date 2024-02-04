@@ -1,4 +1,4 @@
-package com.weather.weatherplatform;
+package com.weather.platform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
