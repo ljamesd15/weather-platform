@@ -14,7 +14,7 @@ public class WeatherControllerTest {
 
     @Test
     public void searchWeatherDataTest() {
-        SearchWeatherDataResponse expected = SearchWeatherDataResponse.builder().weatherDataList(List.of()).build();
+        SearchWeatherDataResponse expected = SearchWeatherDataResponse.builder().weatherDataDtoList(List.of()).build();
 
         WeatherController underTest = new WeatherController();
         SearchWeatherDataResponse actual = underTest.searchWeatherData(SearchWeatherDataRequest.builder().build());

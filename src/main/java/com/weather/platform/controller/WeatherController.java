@@ -15,7 +15,7 @@ public class WeatherController {
 
     @PostMapping("/searchWeatherData")
     public SearchWeatherDataResponse searchWeatherData(@RequestBody SearchWeatherDataRequest request) {
-        return SearchWeatherDataResponse.builder().weatherDataList(List.of()).build();
+        return SearchWeatherDataResponse.builder().weatherDataDtoList(List.of()).build();
     }
 
     @PostMapping("/saveWeatherData")

@@ -1,7 +1,5 @@
 package com.weather.platform.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.weather.platform.model.enums.Direction;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,12 +12,12 @@ import java.time.ZonedDateTime;
 @Builder
 @Data
 @NoArgsConstructor
-public class WeatherData {
+public class WeatherDataDto {
     private ZonedDateTime time;
     private double temperature;
     private double humidity;
     private double windSpeed;
     private Direction windDirection;
     private double lux;
-    private SensorMetadata sensorMetadata;
+    private SensorMetadataDto sensorMetadata;
 }
