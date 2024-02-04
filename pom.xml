@@ -16,6 +16,10 @@
 	<description>Platform for weather data</description>
 	<properties>
 		<java.version>21</java.version>
+		<lombok.version>1.18.30</lombok.version>
+		<mongo-java-driver.version>3.12.14</mongo-java-driver.version>
+		<springdoc.version>2.3.0</springdoc.version>
+		<logback.version>1.4.14</logback.version>
 	</properties>
 	<dependencies>
 		<!--	Spring	-->
@@ -25,28 +29,40 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
 			<version>2.3.0</version>
 		</dependency>
 
+
+		<!--    Logging   -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
 
 		<!--	Data	-->
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-			<version>3.12.14</version>
+			<version>${mongo-java-driver.version}</version>
 		</dependency>
 
 		<!--	Other	-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.30</version>
+			<version>${lombok.version}</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.12.3</version>
 		</dependency>
 
 		<!--	Test	-->
@@ -83,7 +99,8 @@
 				<configuration>
 					<excludes>
 						<exclude>com/weather/platform/WeatherPlatformApplication.class</exclude>
-						<exclude>com/weather/platform/config/*</exclude>
+						<exclude>com/weather/platform/config/**</exclude>
+						<exclude>com/weather/platform/model/**</exclude>
 					</excludes>
 				</configuration>
 				<executions>

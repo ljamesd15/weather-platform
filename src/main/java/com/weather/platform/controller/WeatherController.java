@@ -1,15 +1,25 @@
 package com.weather.platform.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.weather.platform.model.request.SearchWeatherDataRequest;
+import com.weather.platform.model.request.SaveWeatherDataRequest;
+import com.weather.platform.model.response.SearchWeatherDataResponse;
+import com.weather.platform.model.response.SaveWeatherDataResponse;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class WeatherController {
 
     public WeatherController() {}
 
-    @GetMapping("/weatherData")
-    public String getWeatherData() {
-        return "Hello world";
+    @PostMapping("/searchWeatherData")
+    public SearchWeatherDataResponse searchWeatherData(@RequestBody SearchWeatherDataRequest request) {
+        return SearchWeatherDataResponse.builder().weatherDataList(List.of()).build();
+    }
+
+    @PostMapping("/saveWeatherData")
+    public SaveWeatherDataResponse saveWeatherData(@RequestBody SaveWeatherDataRequest request) {
+        return SaveWeatherDataResponse.builder().build();
     }
 }
