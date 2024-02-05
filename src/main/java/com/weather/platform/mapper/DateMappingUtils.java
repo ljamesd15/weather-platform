@@ -1,12 +1,10 @@
 package com.weather.platform.mapper;
 
-import lombok.experimental.UtilityClass;
+import static java.time.ZoneOffset.UTC;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Optional;
-
-import static java.time.ZoneOffset.UTC;
 
 public class DateMappingUtils {
 

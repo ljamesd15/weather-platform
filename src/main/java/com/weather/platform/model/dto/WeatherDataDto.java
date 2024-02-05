@@ -1,13 +1,11 @@
 package com.weather.platform.model.dto;
 
 import com.weather.platform.model.enums.Direction;
+import java.time.ZonedDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 @AllArgsConstructor
 @Builder

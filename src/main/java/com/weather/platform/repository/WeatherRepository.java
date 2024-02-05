@@ -1,10 +1,9 @@
 package com.weather.platform.repository;
 
 import com.weather.platform.model.dao.WeatherDataDao;
+import java.util.List;
 import lombok.NonNull;
 import org.springframework.data.mongodb.repository.MongoRepository;
-
-import java.util.List;
 
 public interface WeatherRepository extends MongoRepository<WeatherDataDao, String> {
 

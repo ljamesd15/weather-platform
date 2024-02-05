@@ -8,8 +8,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(mongoTemplateRef = "Weather")
 public class WeatherPlatformApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(WeatherPlatformApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(WeatherPlatformApplication.class, args);
+    }
 }

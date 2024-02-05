@@ -1,11 +1,10 @@
 package com.weather.platform.model.dao;
 
 import com.weather.platform.model.enums.Direction;
+import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.time.LocalDateTime;
 
 @Builder
 @Data

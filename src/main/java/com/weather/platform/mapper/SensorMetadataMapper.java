@@ -8,5 +8,6 @@ import org.mapstruct.Mapper;
 public interface SensorMetadataMapper {
 
     SensorMetadataDao dtoToDao(SensorMetadataDto dto);
+
     SensorMetadataDto daoToDto(SensorMetadataDao dao);
 }

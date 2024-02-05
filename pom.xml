@@ -20,8 +20,10 @@
 		<lombok.version>1.18.30</lombok.version>
 		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
+		<maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
 		<maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
 		<mongo-java-driver.version>3.12.14</mongo-java-driver.version>
+		<puppycrawl-checkstyle.verson>10.13.0</puppycrawl-checkstyle.verson>
 		<springdoc.version>2.3.0</springdoc.version>
 		<spring-boot-mongo.version>3.2.2</spring-boot-mongo.version>
 		<logback.version>1.4.14</logback.version>
@@ -168,8 +170,53 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${maven-checkstyle-plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>${puppycrawl-checkstyle.verson}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<configLocation>checkstyle.xml</configLocation>
+					<suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
+					<suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+					<encoding>UTF-8</encoding>
+					<consoleOutput>true</consoleOutput>
+					<failsOnError>true</failsOnError>
+					<linkXRef>false</linkXRef>
+				</configuration>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${maven-checkstyle-plugin.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>
