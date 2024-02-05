@@ -1,0 +1,4 @@
+mongodb:
+  database-name: weather
+  connection-string: "mongodb://localhost:27017/weather"
+  is-connection-secret: false

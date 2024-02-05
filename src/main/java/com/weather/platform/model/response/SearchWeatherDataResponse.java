@@ -13,5 +13,5 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class SearchWeatherDataResponse {
-    private List<WeatherDataDto> weatherDataDtoList;
+    private List<WeatherDataDto> weatherDataList;
 }

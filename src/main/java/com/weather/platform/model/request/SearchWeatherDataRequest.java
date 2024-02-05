@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Builder
@@ -13,6 +13,6 @@ import java.time.ZonedDateTime;
 @NoArgsConstructor
 public class SearchWeatherDataRequest {
     public String sensorName;
-    public ZonedDateTime from;
-    public ZonedDateTime to;
+    public LocalDateTime from;
+    public LocalDateTime to;
 }

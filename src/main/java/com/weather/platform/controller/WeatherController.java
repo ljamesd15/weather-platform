@@ -1,25 +1,39 @@
 package com.weather.platform.controller;
 
+import com.weather.platform.model.dto.WeatherDataDto;
 import com.weather.platform.model.request.SearchWeatherDataRequest;
 import com.weather.platform.model.request.SaveWeatherDataRequest;
 import com.weather.platform.model.response.SearchWeatherDataResponse;
 import com.weather.platform.model.response.SaveWeatherDataResponse;
-import org.springframework.web.bind.annotation.*;
+import com.weather.platform.service.WeatherService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@Slf4j
 public class WeatherController {
 
-    public WeatherController() {}
+    private final WeatherService weatherService;
+
+    @Autowired
+    public WeatherController(final WeatherService weatherService) {
+        this.weatherService = weatherService;
+    }
 
     @PostMapping("/searchWeatherData")
     public SearchWeatherDataResponse searchWeatherData(@RequestBody SearchWeatherDataRequest request) {
-        return SearchWeatherDataResponse.builder().weatherDataDtoList(List.of()).build();
+        final List<WeatherDataDto> weatherDataList = this.weatherService.getWeatherData();
+        return SearchWeatherDataResponse.builder().weatherDataList(weatherDataList).build();
     }
 
     @PostMapping("/saveWeatherData")
     public SaveWeatherDataResponse saveWeatherData(@RequestBody SaveWeatherDataRequest request) {
-        return SaveWeatherDataResponse.builder().build();
+        final WeatherDataDto saved = this.weatherService.saveWeatherData(request.getWeatherData());
+        return SaveWeatherDataResponse.builder().weatherData(saved).build();
     }
 }

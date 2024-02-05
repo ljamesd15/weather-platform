@@ -5,3 +5,7 @@ spring:
   jackson:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
+mongodb:
+  database-name: weather
+  connection-string: ""
+  is-connection-secret: false

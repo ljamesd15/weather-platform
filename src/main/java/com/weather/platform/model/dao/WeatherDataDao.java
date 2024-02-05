@@ -3,13 +3,15 @@ package com.weather.platform.model.dao;
 import com.weather.platform.model.enums.Direction;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 @Builder
 @Data
+@Document(collection = "weather")
 public class WeatherDataDao {
-    private final ZonedDateTime time;
+    private final LocalDateTime time;
     private final double temperature;
     private final double humidity;
     private final double windSpeed;

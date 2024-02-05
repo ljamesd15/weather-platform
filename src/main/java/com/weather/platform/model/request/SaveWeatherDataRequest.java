@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class SaveWeatherDataRequest {
-    private WeatherDataDto weatherDataDto;
+    private WeatherDataDto weatherData;
 }
