@@ -34,7 +34,6 @@ public class WeatherServiceImpl implements WeatherService {
     @Override
     public WeatherDataDto saveWeatherData(final WeatherDataDto toSave) {
         final WeatherDataDao saved = this.weatherRepository.save(this.weatherDataMapper.dtoToDao(toSave));
-        log.info("Saved temp: {}", saved.getTemperature());
         return this.weatherDataMapper.daoToDto(saved);
     }
 }

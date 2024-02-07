@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class WeatherDataDto {
     private ZonedDateTime time;
     private double temperature;
+    private double pressure;
     private double humidity;
     private double windSpeed;
     private Direction windDirection;

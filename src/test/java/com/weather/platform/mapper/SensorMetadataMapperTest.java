@@ -4,7 +4,10 @@ import com.weather.platform.model.dao.SensorMetadataDao;
 import com.weather.platform.model.dto.SensorMetadataDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static com.weather.platform.fixtures.SensorMetadataFixtures.TEST_SENSOR_METADATA_DAO;
 import static com.weather.platform.fixtures.SensorMetadataFixtures.TEST_SENSOR_METADATA_DTO;
@@ -20,7 +23,9 @@ public class SensorMetadataMapperTest {
         SensorMetadataDto dto = sensorMetadataMapper.daoToDto(TEST_SENSOR_METADATA_DAO);
         assertEquals(TEST_SENSOR_METADATA_DAO.getLatitude(), dto.getLatitude());
         assertEquals(TEST_SENSOR_METADATA_DAO.getLongitude(), dto.getLongitude());
-        assertEquals(TEST_SENSOR_METADATA_DAO.getName(), dto.getName());
+        assertEquals(TEST_SENSOR_METADATA_DAO.getId(), dto.getId());
+        assertEquals(TEST_SENSOR_METADATA_DAO.getLocation(), dto.getLocation());
+        assertEquals(TEST_SENSOR_METADATA_DAO.getTags(), dto.getTags());
     }
 
     @Test
@@ -28,6 +33,8 @@ public class SensorMetadataMapperTest {
         SensorMetadataDao dao = sensorMetadataMapper.dtoToDao(TEST_SENSOR_METADATA_DTO);
         assertEquals(TEST_SENSOR_METADATA_DTO.getLatitude(), dao.getLatitude());
         assertEquals(TEST_SENSOR_METADATA_DTO.getLongitude(), dao.getLongitude());
-        assertEquals(TEST_SENSOR_METADATA_DTO.getName(), dao.getName());
+        assertEquals(TEST_SENSOR_METADATA_DTO.getId(), dao.getId());
+        assertEquals(TEST_SENSOR_METADATA_DTO.getLocation(), dao.getLocation());
+        assertEquals(TEST_SENSOR_METADATA_DTO.getTags(), dao.getTags());
     }
 }

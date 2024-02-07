@@ -16,6 +16,7 @@ public interface WeatherDataFixtures {
     ZonedDateTime TEST_ZONED_TIME = ZonedDateTime.of(2024, 1, 31, 12, 10, 8, 6, UTC);
     LocalDateTime TEST_LOCAL_TIME = TEST_ZONED_TIME.toLocalDateTime();
     double TEST_HUMIDITY = 61.6;
+    double TEST_PRESSURE = 1.1;
     double TEST_TEMPERATURE = 25.9;
     double TEST_LUX = 2.1;
     double TEST_WIND_SPEED = 5.7;
@@ -23,6 +24,7 @@ public interface WeatherDataFixtures {
     WeatherDataDto TEST_WEATHER_DATA_DTO = WeatherDataDto.builder()
             .time(TEST_ZONED_TIME)
             .humidity(TEST_HUMIDITY)
+            .pressure(TEST_PRESSURE)
             .temperature(TEST_TEMPERATURE)
             .lux(TEST_LUX)
             .windDirection(Direction.N)
@@ -33,6 +35,7 @@ public interface WeatherDataFixtures {
     WeatherDataDao TEST_WEATHER_DATA_DAO = WeatherDataDao.builder()
             .time(TEST_LOCAL_TIME)
             .humidity(TEST_WEATHER_DATA_DTO.getHumidity())
+            .pressure(TEST_WEATHER_DATA_DTO.getPressure())
             .temperature(TEST_WEATHER_DATA_DTO.getTemperature())
             .lux(TEST_WEATHER_DATA_DTO.getLux())
             .windDirection(TEST_WEATHER_DATA_DTO.getWindDirection())

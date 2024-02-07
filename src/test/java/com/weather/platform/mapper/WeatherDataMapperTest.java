@@ -22,11 +22,12 @@ public class WeatherDataMapperTest {
         WeatherDataDto dto = weatherDataMapper.daoToDto(TEST_WEATHER_DATA_DAO);
         assertEquals(TEST_WEATHER_DATA_DAO.getHumidity(), dto.getHumidity());
         assertEquals(TEST_WEATHER_DATA_DAO.getLux(), dto.getLux());
+        assertEquals(TEST_WEATHER_DATA_DAO.getPressure(), dto.getPressure());
         assertEquals(TEST_WEATHER_DATA_DAO.getTime().atZone(UTC), dto.getTime());
         assertEquals(TEST_WEATHER_DATA_DAO.getWindSpeed(), dto.getWindSpeed());
         assertEquals(TEST_WEATHER_DATA_DAO.getWindDirection(), dto.getWindDirection());
         assertEquals(TEST_WEATHER_DATA_DAO.getTemperature(), dto.getTemperature());
-        assertEquals(TEST_WEATHER_DATA_DAO.getSensorMetadata().getName(), dto.getSensorMetadata().getName());
+        assertEquals(TEST_WEATHER_DATA_DAO.getSensorMetadata().getId(), dto.getSensorMetadata().getId());
         assertEquals(TEST_WEATHER_DATA_DAO.getSensorMetadata().getLongitude(), dto.getSensorMetadata().getLongitude());
         assertEquals(TEST_WEATHER_DATA_DAO.getSensorMetadata().getLatitude(), dto.getSensorMetadata().getLatitude());
     }
@@ -36,11 +37,12 @@ public class WeatherDataMapperTest {
         WeatherDataDao dao = weatherDataMapper.dtoToDao(TEST_WEATHER_DATA_DTO);
         assertEquals(TEST_WEATHER_DATA_DTO.getHumidity(), dao.getHumidity());
         assertEquals(TEST_WEATHER_DATA_DTO.getLux(), dao.getLux());
+        assertEquals(TEST_WEATHER_DATA_DTO.getPressure(), dao.getPressure());
         assertEquals(TEST_WEATHER_DATA_DTO.getTime(), dao.getTime().atZone(UTC));
         assertEquals(TEST_WEATHER_DATA_DTO.getWindSpeed(), dao.getWindSpeed());
         assertEquals(TEST_WEATHER_DATA_DTO.getWindDirection(), dao.getWindDirection());
         assertEquals(TEST_WEATHER_DATA_DTO.getTemperature(), dao.getTemperature());
-        assertEquals(TEST_WEATHER_DATA_DTO.getSensorMetadata().getName(), dao.getSensorMetadata().getName());
+        assertEquals(TEST_WEATHER_DATA_DTO.getSensorMetadata().getId(), dao.getSensorMetadata().getId());
         assertEquals(TEST_WEATHER_DATA_DTO.getSensorMetadata().getLongitude(), dao.getSensorMetadata().getLongitude());
         assertEquals(TEST_WEATHER_DATA_DTO.getSensorMetadata().getLatitude(), dao.getSensorMetadata().getLatitude());
     }

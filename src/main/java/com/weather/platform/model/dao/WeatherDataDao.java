@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class WeatherDataDao {
     private final LocalDateTime time;
     private final double temperature;
+    private final double pressure;
     private final double humidity;
     private final double windSpeed;
     private final Direction windDirection;
