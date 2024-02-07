@@ -11,11 +11,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "weather")
 public class WeatherDataDao {
     private final LocalDateTime time;
-    private final double temperature;
-    private final double pressure;
-    private final double humidity;
-    private final double windSpeed;
+    private final Double temperature;
+    private final Double pressure;
+    private final Double humidity;
+    private final Double windSpeed;
+    private final Double luminosity;
+    private final Double uvIndex;
     private final Direction windDirection;
-    private final double lux;
     private final SensorMetadataDao sensorMetadata;
 }

@@ -16,9 +16,10 @@ public interface WeatherDataFixtures {
     ZonedDateTime TEST_ZONED_TIME = ZonedDateTime.of(2024, 1, 31, 12, 10, 8, 6, UTC);
     LocalDateTime TEST_LOCAL_TIME = TEST_ZONED_TIME.toLocalDateTime();
     double TEST_HUMIDITY = 61.6;
-    double TEST_PRESSURE = 1.1;
+    double TEST_PRESSURE = 1024;
     double TEST_TEMPERATURE = 25.9;
-    double TEST_LUX = 2.1;
+    double TEST_LUMINOSITY = 12000;
+    double TEST_UV_INDEX = 5.2;
     double TEST_WIND_SPEED = 5.7;
 
     WeatherDataDto TEST_WEATHER_DATA_DTO = WeatherDataDto.builder()
@@ -26,7 +27,8 @@ public interface WeatherDataFixtures {
             .humidity(TEST_HUMIDITY)
             .pressure(TEST_PRESSURE)
             .temperature(TEST_TEMPERATURE)
-            .lux(TEST_LUX)
+            .luminosity(TEST_LUMINOSITY)
+            .uvIndex(TEST_UV_INDEX)
             .windDirection(Direction.N)
             .windSpeed(TEST_WIND_SPEED)
             .sensorMetadata(TEST_SENSOR_METADATA_DTO)
@@ -37,7 +39,8 @@ public interface WeatherDataFixtures {
             .humidity(TEST_WEATHER_DATA_DTO.getHumidity())
             .pressure(TEST_WEATHER_DATA_DTO.getPressure())
             .temperature(TEST_WEATHER_DATA_DTO.getTemperature())
-            .lux(TEST_WEATHER_DATA_DTO.getLux())
+            .luminosity(TEST_WEATHER_DATA_DTO.getLuminosity())
+            .uvIndex(TEST_WEATHER_DATA_DTO.getUvIndex())
             .windDirection(TEST_WEATHER_DATA_DTO.getWindDirection())
             .windSpeed(TEST_WEATHER_DATA_DTO.getWindSpeed())
             .sensorMetadata(TEST_SENSOR_METADATA_DAO)

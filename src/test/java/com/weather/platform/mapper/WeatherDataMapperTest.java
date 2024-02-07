@@ -21,7 +21,8 @@ public class WeatherDataMapperTest {
     public void daoToDtoTest() {
         WeatherDataDto dto = weatherDataMapper.daoToDto(TEST_WEATHER_DATA_DAO);
         assertEquals(TEST_WEATHER_DATA_DAO.getHumidity(), dto.getHumidity());
-        assertEquals(TEST_WEATHER_DATA_DAO.getLux(), dto.getLux());
+        assertEquals(TEST_WEATHER_DATA_DAO.getLuminosity(), dto.getLuminosity());
+        assertEquals(TEST_WEATHER_DATA_DAO.getUvIndex(), dto.getUvIndex());
         assertEquals(TEST_WEATHER_DATA_DAO.getPressure(), dto.getPressure());
         assertEquals(TEST_WEATHER_DATA_DAO.getTime().atZone(UTC), dto.getTime());
         assertEquals(TEST_WEATHER_DATA_DAO.getWindSpeed(), dto.getWindSpeed());
@@ -36,7 +37,8 @@ public class WeatherDataMapperTest {
     public void dtoToDaoTest() {
         WeatherDataDao dao = weatherDataMapper.dtoToDao(TEST_WEATHER_DATA_DTO);
         assertEquals(TEST_WEATHER_DATA_DTO.getHumidity(), dao.getHumidity());
-        assertEquals(TEST_WEATHER_DATA_DTO.getLux(), dao.getLux());
+        assertEquals(TEST_WEATHER_DATA_DTO.getLuminosity(), dao.getLuminosity());
+        assertEquals(TEST_WEATHER_DATA_DTO.getUvIndex(), dao.getUvIndex());
         assertEquals(TEST_WEATHER_DATA_DTO.getPressure(), dao.getPressure());
         assertEquals(TEST_WEATHER_DATA_DTO.getTime(), dao.getTime().atZone(UTC));
         assertEquals(TEST_WEATHER_DATA_DTO.getWindSpeed(), dao.getWindSpeed());
