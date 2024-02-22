@@ -2,16 +2,15 @@ package com.weather.platform.model.dto;
 
 import com.weather.platform.model.enums.Direction;
 import java.time.ZonedDateTime;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import org.springframework.lang.NonNull;
 
 @Builder
 @Data
 public class WeatherDataDto {
     /** Time the weather data was captured. */
+    @NonNull
     private final ZonedDateTime time;
 
     /** Temperature measured in Celsius. */
@@ -36,5 +35,6 @@ public class WeatherDataDto {
     private final Double uvIndex;
 
     /** Metadata of the sensor sending the weather data. */
+    @NonNull
     private final SensorMetadataDto sensorMetadata;
 }
