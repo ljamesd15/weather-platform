@@ -1,13 +1,14 @@
 package com.weather.platform.model.request;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import lombok.Builder;
 import lombok.Data;
 
 @Builder
 @Data
 public class SearchWeatherDataRequest {
-    public final String sensorName;
-    public final LocalDateTime from;
-    public final LocalDateTime to;
+    private final String sensorId;
+    private final String location;
+    private final ZonedDateTime minTime;
+    private final ZonedDateTime maxTime;
 }

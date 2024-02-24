@@ -11,7 +11,7 @@ public class SensorMetadataDto {
     private final Double longitude;
     private final Double latitude;
     @NonNull
-    private final String id;
+    private final String sensorId;
     private final List<String> tags;
     @NonNull
     private final String location;

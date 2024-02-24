@@ -9,7 +9,7 @@ import lombok.Data;
 public class SensorMetadataDao {
     private final Double longitude;
     private final Double latitude;
-    private final String id;
+    private final String sensorId;
     private final List<String> tags;
     private final String location;
 }

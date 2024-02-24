@@ -24,7 +24,7 @@ public class WeatherControllerTest {
     @Test
     public void searchWeatherDataTest_withEmptyList() {
         SearchWeatherDataResponse expected = SearchWeatherDataResponse.builder().weatherDataList(List.of()).build();
-        when(weatherService.getWeatherData()).thenReturn(List.of());
+        when(weatherService.searchWeatherData(null, null, null, null)).thenReturn(List.of());
 
         WeatherController underTest = new WeatherController(weatherService);
         SearchWeatherDataResponse actual = underTest.searchWeatherData(SearchWeatherDataRequest.builder().build());
@@ -34,7 +34,7 @@ public class WeatherControllerTest {
     @Test
     public void searchWeatherDataTest() {
         SearchWeatherDataResponse expected = SearchWeatherDataResponse.builder().weatherDataList(List.of(TEST_WEATHER_DATA_DTO)).build();
-        when(weatherService.getWeatherData()).thenReturn(List.of(TEST_WEATHER_DATA_DTO));
+        when(weatherService.searchWeatherData(null, null, null, null)).thenReturn(List.of(TEST_WEATHER_DATA_DTO));
 
         WeatherController underTest = new WeatherController(weatherService);
         SearchWeatherDataResponse actual = underTest.searchWeatherData(SearchWeatherDataRequest.builder().build());

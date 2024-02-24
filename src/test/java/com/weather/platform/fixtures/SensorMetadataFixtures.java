@@ -16,7 +16,7 @@ public interface SensorMetadataFixtures {
     SensorMetadataDto TEST_SENSOR_METADATA_DTO = SensorMetadataDto.builder()
             .latitude(TEST_LATITUDE)
             .longitude(TEST_LONGITUDE)
-            .id(TEST_SENSOR_ID)
+            .sensorId(TEST_SENSOR_ID)
             .tags(List.of(TEST_TAG_1, TEST_TAG_2))
             .location(TEST_LOCATION)
             .build();
@@ -24,7 +24,7 @@ public interface SensorMetadataFixtures {
     SensorMetadataDao TEST_SENSOR_METADATA_DAO = SensorMetadataDao.builder()
             .latitude(TEST_SENSOR_METADATA_DTO.getLatitude())
             .longitude(TEST_SENSOR_METADATA_DTO.getLongitude())
-            .id(TEST_SENSOR_METADATA_DTO.getId())
+            .sensorId(TEST_SENSOR_METADATA_DTO.getSensorId())
             .tags(TEST_SENSOR_METADATA_DTO.getTags())
             .location(TEST_SENSOR_METADATA_DTO.getLocation())
             .build();

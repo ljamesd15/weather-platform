@@ -26,7 +26,10 @@ public class WeatherController {
 
     @PostMapping("/searchWeatherData")
     public SearchWeatherDataResponse searchWeatherData(@RequestBody SearchWeatherDataRequest request) {
-        final List<WeatherDataDto> weatherDataList = this.weatherService.getWeatherData();
+        final List<WeatherDataDto> weatherDataList = this.weatherService.searchWeatherData(request.getSensorId(),
+                request.getLocation(),
+                request.getMinTime(),
+                request.getMaxTime());
         return SearchWeatherDataResponse.builder().weatherDataList(weatherDataList).build();
     }
 

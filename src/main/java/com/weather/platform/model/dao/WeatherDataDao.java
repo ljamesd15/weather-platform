@@ -1,7 +1,7 @@
 package com.weather.platform.model.dao;
 
 import com.weather.platform.model.enums.Direction;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Document(collection = "weather")
 public class WeatherDataDao {
-    private final LocalDateTime time;
+    private final Instant time;
     private final Double temperature;
     private final Double pressure;
     private final Double humidity;

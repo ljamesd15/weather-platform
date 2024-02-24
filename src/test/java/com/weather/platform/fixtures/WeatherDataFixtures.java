@@ -4,8 +4,7 @@ import com.weather.platform.model.dao.WeatherDataDao;
 import com.weather.platform.model.dto.WeatherDataDto;
 import com.weather.platform.model.enums.Direction;
 
-import java.time.ZoneId;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.time.ZonedDateTime;
 
 import static com.weather.platform.fixtures.SensorMetadataFixtures.TEST_SENSOR_METADATA_DAO;
@@ -14,7 +13,7 @@ import static java.time.ZoneOffset.UTC;
 
 public interface WeatherDataFixtures {
     ZonedDateTime TEST_ZONED_TIME = ZonedDateTime.of(2024, 1, 31, 12, 10, 8, 6, UTC);
-    LocalDateTime TEST_LOCAL_TIME = TEST_ZONED_TIME.toLocalDateTime();
+    Instant TEST_INSTANT_TIME = TEST_ZONED_TIME.toInstant();
     double TEST_HUMIDITY = 61.6;
     double TEST_PRESSURE = 1024;
     double TEST_TEMPERATURE = 25.9;
@@ -35,7 +34,7 @@ public interface WeatherDataFixtures {
             .build();
 
     WeatherDataDao TEST_WEATHER_DATA_DAO = WeatherDataDao.builder()
-            .time(TEST_LOCAL_TIME)
+            .time(TEST_INSTANT_TIME)
             .humidity(TEST_WEATHER_DATA_DTO.getHumidity())
             .pressure(TEST_WEATHER_DATA_DTO.getPressure())
             .temperature(TEST_WEATHER_DATA_DTO.getTemperature())
