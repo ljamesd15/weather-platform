@@ -1,7 +1,7 @@
 package com.weather.platform.fixtures;
 
+import com.weather.model.external.SensorMetadata;
 import com.weather.platform.model.dao.SensorMetadataDao;
-import com.weather.platform.model.dto.SensorMetadataDto;
 import java.util.List;
 
 public interface SensorMetadataFixtures {
@@ -13,7 +13,7 @@ public interface SensorMetadataFixtures {
     String TEST_TAG_2 = "Tag2";
     String TEST_LOCATION = "Greenhouse";
 
-    SensorMetadataDto TEST_SENSOR_METADATA_DTO = SensorMetadataDto.builder()
+    SensorMetadata TEST_SENSOR_METADATA = SensorMetadata.builder()
             .latitude(TEST_LATITUDE)
             .longitude(TEST_LONGITUDE)
             .sensorId(TEST_SENSOR_ID)
@@ -22,10 +22,10 @@ public interface SensorMetadataFixtures {
             .build();
 
     SensorMetadataDao TEST_SENSOR_METADATA_DAO = SensorMetadataDao.builder()
-            .latitude(TEST_SENSOR_METADATA_DTO.getLatitude())
-            .longitude(TEST_SENSOR_METADATA_DTO.getLongitude())
-            .sensorId(TEST_SENSOR_METADATA_DTO.getSensorId())
-            .tags(TEST_SENSOR_METADATA_DTO.getTags())
-            .location(TEST_SENSOR_METADATA_DTO.getLocation())
+            .latitude(TEST_SENSOR_METADATA.latitude())
+            .longitude(TEST_SENSOR_METADATA.longitude())
+            .sensorId(TEST_SENSOR_METADATA.sensorId())
+            .tags(TEST_SENSOR_METADATA.tags())
+            .location(TEST_SENSOR_METADATA.location())
             .build();
 }

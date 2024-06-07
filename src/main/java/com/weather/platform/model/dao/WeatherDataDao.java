@@ -1,6 +1,6 @@
 package com.weather.platform.model.dao;
 
-import com.weather.platform.model.enums.Direction;
+import com.weather.model.external.enums.Direction;
 import java.time.Instant;
 import lombok.Builder;
 import lombok.Data;

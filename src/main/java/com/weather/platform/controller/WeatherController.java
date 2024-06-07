@@ -1,10 +1,10 @@
 package com.weather.platform.controller;
 
-import com.weather.platform.model.dto.WeatherDataDto;
-import com.weather.platform.model.request.SaveWeatherDataRequest;
-import com.weather.platform.model.request.SearchWeatherDataRequest;
-import com.weather.platform.model.response.SaveWeatherDataResponse;
-import com.weather.platform.model.response.SearchWeatherDataResponse;
+import com.weather.model.external.WeatherData;
+import com.weather.model.external.request.SaveWeatherDataRequest;
+import com.weather.model.external.request.SearchWeatherDataRequest;
+import com.weather.model.external.response.SaveWeatherDataResponse;
+import com.weather.model.external.response.SearchWeatherDataResponse;
 import com.weather.platform.service.WeatherService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -26,16 +26,16 @@ public class WeatherController {
 
     @PostMapping("/searchWeatherData")
     public SearchWeatherDataResponse searchWeatherData(@RequestBody SearchWeatherDataRequest request) {
-        final List<WeatherDataDto> weatherDataList = this.weatherService.searchWeatherData(request.getSensorId(),
-                request.getLocation(),
-                request.getMinTime(),
-                request.getMaxTime());
+        final List<WeatherData> weatherDataList = this.weatherService.searchWeatherData(request.sensorId(),
+                request.location(),
+                request.minTime(),
+                request.maxTime());
         return SearchWeatherDataResponse.builder().weatherDataList(weatherDataList).build();
     }
 
     @PostMapping("/saveWeatherData")
     public SaveWeatherDataResponse saveWeatherData(@RequestBody SaveWeatherDataRequest request) {
-        final WeatherDataDto saved = this.weatherService.saveWeatherData(request.getWeatherData());
+        final WeatherData saved = this.weatherService.saveWeatherData(request.weatherData());
         return SaveWeatherDataResponse.builder().weatherData(saved).build();
     }
 }

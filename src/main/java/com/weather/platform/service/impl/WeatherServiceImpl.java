@@ -3,9 +3,9 @@ package com.weather.platform.service.impl;
 import static com.weather.platform.utils.MongoHelper.MAX_MONGO_TIME;
 import static com.weather.platform.utils.MongoHelper.MIN_MONGO_TIME;
 
+import com.weather.model.external.WeatherData;
 import com.weather.platform.mapper.WeatherDataMapper;
 import com.weather.platform.model.dao.WeatherDataDao;
-import com.weather.platform.model.dto.WeatherDataDto;
 import com.weather.platform.repository.WeatherRepository;
 import com.weather.platform.service.WeatherService;
 import com.weather.platform.utils.MongoHelper;
@@ -35,7 +35,7 @@ public class WeatherServiceImpl implements WeatherService {
     }
 
     @Override
-    public List<WeatherDataDto> getWeatherData() {
+    public List<WeatherData> getWeatherData() {
 
         return this.weatherRepository.findAll()
                 .stream()
@@ -44,7 +44,7 @@ public class WeatherServiceImpl implements WeatherService {
     }
 
     @Override
-    public List<WeatherDataDto> searchWeatherData(final String sensorId,
+    public List<WeatherData> searchWeatherData(final String sensorId,
                                                   final String sensorLocation,
                                                   final ZonedDateTime minTime,
                                                   final ZonedDateTime maxTime) {
@@ -68,7 +68,7 @@ public class WeatherServiceImpl implements WeatherService {
     }
 
     @Override
-    public WeatherDataDto saveWeatherData(final WeatherDataDto toSave) {
+    public WeatherData saveWeatherData(final WeatherData toSave) {
         final WeatherDataDao saved = this.weatherRepository.save(this.weatherDataMapper.dtoToDao(toSave));
         return this.weatherDataMapper.daoToDto(saved);
     }

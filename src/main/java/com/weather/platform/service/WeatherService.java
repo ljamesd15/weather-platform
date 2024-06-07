@@ -1,18 +1,18 @@
 package com.weather.platform.service;
 
-import com.weather.platform.model.dto.WeatherDataDto;
+import com.weather.model.external.WeatherData;
 import java.time.ZonedDateTime;
 import java.util.List;
 
 public interface WeatherService {
 
     // TODO: Support filtering
-    List<WeatherDataDto> getWeatherData();
+    List<WeatherData> getWeatherData();
 
-    List<WeatherDataDto> searchWeatherData(String sensorId,
+    List<WeatherData> searchWeatherData(String sensorId,
                                            String sensorLocation,
                                            ZonedDateTime minTime,
                                            ZonedDateTime maxTime);
 
-    WeatherDataDto saveWeatherData(WeatherDataDto toSave);
+    WeatherData saveWeatherData(WeatherData toSave);
 }

@@ -3,7 +3,6 @@ package com.weather.platform.mapper;
 import static java.time.ZoneOffset.UTC;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 

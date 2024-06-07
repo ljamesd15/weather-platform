@@ -1,14 +1,14 @@
 package com.weather.platform.fixtures;
 
+import com.weather.model.external.WeatherData;
+import com.weather.model.external.enums.Direction;
 import com.weather.platform.model.dao.WeatherDataDao;
-import com.weather.platform.model.dto.WeatherDataDto;
-import com.weather.platform.model.enums.Direction;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
 
 import static com.weather.platform.fixtures.SensorMetadataFixtures.TEST_SENSOR_METADATA_DAO;
-import static com.weather.platform.fixtures.SensorMetadataFixtures.TEST_SENSOR_METADATA_DTO;
+import static com.weather.platform.fixtures.SensorMetadataFixtures.TEST_SENSOR_METADATA;
 import static java.time.ZoneOffset.UTC;
 
 public interface WeatherDataFixtures {
@@ -21,7 +21,7 @@ public interface WeatherDataFixtures {
     double TEST_UV_INDEX = 5.2;
     double TEST_WIND_SPEED = 5.7;
 
-    WeatherDataDto TEST_WEATHER_DATA_DTO = WeatherDataDto.builder()
+    WeatherData TEST_WEATHER_DATA = WeatherData.builder()
             .time(TEST_ZONED_TIME)
             .humidity(TEST_HUMIDITY)
             .pressure(TEST_PRESSURE)
@@ -30,18 +30,18 @@ public interface WeatherDataFixtures {
             .uvIndex(TEST_UV_INDEX)
             .windDirection(Direction.N)
             .windSpeed(TEST_WIND_SPEED)
-            .sensorMetadata(TEST_SENSOR_METADATA_DTO)
+            .sensorMetadata(TEST_SENSOR_METADATA)
             .build();
 
     WeatherDataDao TEST_WEATHER_DATA_DAO = WeatherDataDao.builder()
             .time(TEST_INSTANT_TIME)
-            .humidity(TEST_WEATHER_DATA_DTO.getHumidity())
-            .pressure(TEST_WEATHER_DATA_DTO.getPressure())
-            .temperature(TEST_WEATHER_DATA_DTO.getTemperature())
-            .luminosity(TEST_WEATHER_DATA_DTO.getLuminosity())
-            .uvIndex(TEST_WEATHER_DATA_DTO.getUvIndex())
-            .windDirection(TEST_WEATHER_DATA_DTO.getWindDirection())
-            .windSpeed(TEST_WEATHER_DATA_DTO.getWindSpeed())
+            .humidity(TEST_WEATHER_DATA.humidity())
+            .pressure(TEST_WEATHER_DATA.pressure())
+            .temperature(TEST_WEATHER_DATA.temperature())
+            .luminosity(TEST_WEATHER_DATA.luminosity())
+            .uvIndex(TEST_WEATHER_DATA.uvIndex())
+            .windDirection(TEST_WEATHER_DATA.windDirection())
+            .windSpeed(TEST_WEATHER_DATA.windSpeed())
             .sensorMetadata(TEST_SENSOR_METADATA_DAO)
             .build();
 }

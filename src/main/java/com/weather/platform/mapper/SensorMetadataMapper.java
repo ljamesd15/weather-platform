@@ -1,13 +1,13 @@
 package com.weather.platform.mapper;
 
+import com.weather.model.external.SensorMetadata;
 import com.weather.platform.model.dao.SensorMetadataDao;
-import com.weather.platform.model.dto.SensorMetadataDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface SensorMetadataMapper {
 
-    SensorMetadataDao dtoToDao(SensorMetadataDto dto);
+    SensorMetadataDao dtoToDao(SensorMetadata sensorMetadata);
 
-    SensorMetadataDto daoToDto(SensorMetadataDao dao);
+    SensorMetadata daoToDto(SensorMetadataDao dao);
 }
