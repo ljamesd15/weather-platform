@@ -26,6 +26,7 @@
 		<puppycrawl-checkstyle.verson>10.13.0</puppycrawl-checkstyle.verson>
 		<springdoc.version>2.3.0</springdoc.version>
 		<spring-boot-mongo.version>3.2.2</spring-boot-mongo.version>
+		<spring-boot-maven-plugin.version>3.0.7</spring-boot-maven-plugin.version>
 		<logback.version>1.4.14</logback.version>
 		<weather-model.version>1.0-SNAPSHOT</weather-model.version>
 	</properties>
@@ -90,23 +91,12 @@
 	</dependencies>
 
 	<build>
+		<finalName>weather-platform</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-						<configuration>
-							<classifier>spring-boot</classifier>
-							<mainClass>
-								com.weather.platform.WeatherPlatformApplication
-							</mainClass>
-						</configuration>
-					</execution>
-				</executions>
+				<version>${spring-boot-maven-plugin.version}</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -204,6 +194,23 @@
 						<goals>
 							<goal>check</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources</source>
+							</sources>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>

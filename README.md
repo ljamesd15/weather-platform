@@ -1,9 +1,16 @@
 # Weather Platform
 
+## Tech stack
+Database: MongoDB
+Backend service: Java + Spring
+
 ## Local development
 To start the service
-1. ```mvn clean package```
-2. ```$ java -jar -Dspring.profiles.active=local target/weather-platform-0.0.1-SNAPSHOT.jar com.weather.platform.WeatherPlatformApplication.java```
+1. ```$ mvn clean package```
+2. ```$ docker compose build```
+   1. First time only
+3. ```$ docker compose --profile db```
+   1. If you already have a MongoDB container running you can just bring up the essential services with ```$ docker compose up``` 
 
 ## Making a change
 1. Make changes necessary and add unit tests

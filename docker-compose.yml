@@ -1,0 +1,18 @@
+services:
+  mongodb:
+    image: mongodb/mongodb-community-server:latest
+    ports:
+      - "27017:27017"
+    profiles:
+      - db
+  web:
+    container_name: weather-platform
+    build:
+      dockerfile: local.Dockerfile
+    ports:
+      - "8080:8080"
+    # Allows for using latest jar without rebuilding image every time
+    volumes:
+      - ./target:/app
+    environment:
+      SPRING_PROFILES_ACTIVE: local
