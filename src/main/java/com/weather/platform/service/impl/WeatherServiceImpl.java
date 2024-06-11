@@ -4,6 +4,7 @@ import static com.weather.platform.utils.MongoHelper.MAX_MONGO_TIME;
 import static com.weather.platform.utils.MongoHelper.MIN_MONGO_TIME;
 
 import com.weather.model.external.WeatherData;
+import com.weather.model.external.request.SaveWeatherDataRequest;
 import com.weather.platform.mapper.WeatherDataMapper;
 import com.weather.platform.model.dao.WeatherDataDao;
 import com.weather.platform.repository.WeatherRepository;
@@ -14,6 +15,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,8 +70,30 @@ public class WeatherServiceImpl implements WeatherService {
     }
 
     @Override
-    public WeatherData saveWeatherData(final WeatherData toSave) {
-        final WeatherDataDao saved = this.weatherRepository.save(this.weatherDataMapper.dtoToDao(toSave));
+    public WeatherData saveWeatherData(final SaveWeatherDataRequest toSave) {
+        WeatherData weatherData = WeatherData.builder()
+                .id(ObjectId.get().toHexString())
+                .time(toSave.time())
+                .sensorMetadata(toSave.sensorMetadata())
+                .uvIndex(toSave.uvIndex())
+                .luminosity(toSave.luminosity())
+                .windDirection(toSave.windDirection())
+                .windSpeed(toSave.windSpeed())
+                .pressure(toSave.pressure())
+                .temperature(toSave.temperature())
+                .build();
+        final WeatherDataDao saved = this.weatherRepository.save(
+                this.weatherDataMapper.dtoToDao(weatherData)
+        );
         return this.weatherDataMapper.daoToDto(saved);
+    }
+
+    @Override
+    public void deleteWeatherData(final String id) {
+        this.weatherRepository.findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException(String.format("Unable to find WeatherData with ID: %s", id))
+                );
+        weatherRepository.deleteById(id);
     }
 }

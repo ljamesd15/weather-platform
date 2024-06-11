@@ -2,7 +2,9 @@ package com.weather.platform.fixtures;
 
 import com.weather.model.external.WeatherData;
 import com.weather.model.external.enums.Direction;
+import com.weather.model.external.request.SaveWeatherDataRequest;
 import com.weather.platform.model.dao.WeatherDataDao;
+import org.bson.types.ObjectId;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
@@ -20,8 +22,22 @@ public interface WeatherDataFixtures {
     double TEST_LUMINOSITY = 12000;
     double TEST_UV_INDEX = 5.2;
     double TEST_WIND_SPEED = 5.7;
+    ObjectId TEST_OBJECT_ID = ObjectId.get();
+
+    SaveWeatherDataRequest SAVE_WEATHER_DATA_REQUEST = SaveWeatherDataRequest.builder()
+            .time(TEST_ZONED_TIME)
+            .humidity(TEST_HUMIDITY)
+            .pressure(TEST_PRESSURE)
+            .temperature(TEST_TEMPERATURE)
+            .luminosity(TEST_LUMINOSITY)
+            .uvIndex(TEST_UV_INDEX)
+            .windDirection(Direction.N)
+            .windSpeed(TEST_WIND_SPEED)
+            .sensorMetadata(TEST_SENSOR_METADATA)
+            .build();
 
     WeatherData TEST_WEATHER_DATA = WeatherData.builder()
+            .id(TEST_OBJECT_ID.toHexString())
             .time(TEST_ZONED_TIME)
             .humidity(TEST_HUMIDITY)
             .pressure(TEST_PRESSURE)
@@ -34,6 +50,7 @@ public interface WeatherDataFixtures {
             .build();
 
     WeatherDataDao TEST_WEATHER_DATA_DAO = WeatherDataDao.builder()
+            .id(TEST_OBJECT_ID)
             .time(TEST_INSTANT_TIME)
             .humidity(TEST_WEATHER_DATA.humidity())
             .pressure(TEST_WEATHER_DATA.pressure())

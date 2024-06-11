@@ -11,6 +11,7 @@ services:
       dockerfile: local.Dockerfile
     ports:
       - "8080:8080"
+      - "8000:8000"
     # Allows for using latest jar without rebuilding image every time
     volumes:
       - ./target:/app

@@ -9,8 +9,11 @@ import com.weather.platform.service.WeatherService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -35,7 +38,17 @@ public class WeatherController {
 
     @PostMapping("/saveWeatherData")
     public SaveWeatherDataResponse saveWeatherData(@RequestBody SaveWeatherDataRequest request) {
-        final WeatherData saved = this.weatherService.saveWeatherData(request.weatherData());
+        final WeatherData saved = this.weatherService.saveWeatherData(request);
         return SaveWeatherDataResponse.builder().weatherData(saved).build();
+    }
+
+    @DeleteMapping("/deleteWeatherData")
+    public ResponseEntity<Void> deleteWeatherData(@RequestParam String id) {
+        try {
+            this.weatherService.deleteWeatherData(id);
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

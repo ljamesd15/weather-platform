@@ -1,6 +1,7 @@
 package com.weather.platform.service;
 
 import com.weather.model.external.WeatherData;
+import com.weather.model.external.request.SaveWeatherDataRequest;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -14,5 +15,7 @@ public interface WeatherService {
                                            ZonedDateTime minTime,
                                            ZonedDateTime maxTime);
 
-    WeatherData saveWeatherData(WeatherData toSave);
+    WeatherData saveWeatherData(SaveWeatherDataRequest toSave);
+
+    void deleteWeatherData(String id);
 }
