@@ -71,16 +71,9 @@ public class WeatherServiceImpl implements WeatherService {
 
     @Override
     public WeatherData saveWeatherData(final SaveWeatherDataRequest toSave) {
-        WeatherData weatherData = WeatherData.builder()
+        final WeatherData weatherData = this.weatherDataMapper.saveRequestToDto(toSave)
+                .toBuilder()
                 .id(ObjectId.get().toHexString())
-                .time(toSave.time())
-                .sensorMetadata(toSave.sensorMetadata())
-                .uvIndex(toSave.uvIndex())
-                .luminosity(toSave.luminosity())
-                .windDirection(toSave.windDirection())
-                .windSpeed(toSave.windSpeed())
-                .pressure(toSave.pressure())
-                .temperature(toSave.temperature())
                 .build();
         final WeatherDataDao saved = this.weatherRepository.save(
                 this.weatherDataMapper.dtoToDao(weatherData)

@@ -1,6 +1,7 @@
 package com.weather.platform.mapper;
 
 import com.weather.model.external.WeatherData;
+import com.weather.model.external.request.SaveWeatherDataRequest;
 import com.weather.platform.model.dao.WeatherDataDao;
 import org.bson.types.ObjectId;
 import org.mapstruct.Mapper;
@@ -15,6 +16,8 @@ public interface WeatherDataMapper {
 
     @Mapping(source = "id", target = "id", qualifiedByName = "objectIdToString")
     WeatherData daoToDto(WeatherDataDao dao);
+
+    WeatherData saveRequestToDto(SaveWeatherDataRequest request);
 
     @Named("objectIdToString")
     static String objectIdToString(ObjectId id) {
