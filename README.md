@@ -11,6 +11,9 @@ To start the service
    1. First time only
 3. ```$ docker compose --profile db```
    1. If you already have a MongoDB container running you can just bring up the essential services with ```$ docker compose up``` 
+   2. You can set up mongo manually using [these docs](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-community-with-docker/)
+      1. ```docker run -p 27017:27017 --restart unless-stopped --name mongodb -d mongodb/mongodb-community-server:latest```
+
 
 ## Making a change
 1. Make changes necessary and add unit tests
