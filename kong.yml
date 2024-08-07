@@ -2,8 +2,8 @@ _format_version: "3.0"
 _transform: true
 
 services:
-  - host: 172.19.0.1
-    name: weather_service
+  - name: weather-service
+    host: weather-platform
     port: 8080
     protocol: http
     routes:
@@ -14,7 +14,7 @@ services:
           - "DELETE"
         paths:
           - /deleteWeatherData
-        strip_path: true
+        strip_path: false
       - name: saveWeatherData
         tags:
           - weather
@@ -22,7 +22,7 @@ services:
           - "POST"
         paths:
           - /saveWeatherData
-        strip_path: true
+        strip_path: false
       - name: search_weather_data
         tags:
           - weather
@@ -30,24 +30,23 @@ services:
           - "POST"
         paths:
           - /searchWeatherData
-        strip_path: true
+        strip_path: false
+
+plugins:
+  - name: jwt
+    service: weather-service
+    enabled: true
+    config:
+      claims_to_verify:
+        - exp
+        - nbf
+      secret_is_base64: true
 
 consumers:
-  - custom_id: weather-events
+  - username: weather-events
     tags:
       - weather
-#    keyauth_credentials:
-#      - key: weather-events-key
-
-#plugins:
-#  - name: key-auth
-#    enabled: true
-#    service: weather-service
-#    tags:
-#      - weather
-#    config:
-#      key_in_query: false
-#      key_in_header: true
-#      key_names:
-#        - weather-events-key
-
+    jwt_secrets:
+      - algorithm: "HS512"
+        key: weather-events-weather-service-jwt-key
+        secret: $WEATHER_JWT_SECRET

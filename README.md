@@ -14,6 +14,25 @@ To start the service
    2. You can set up mongo manually using [these docs](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-community-with-docker/)
       1. ```docker run -p 27017:27017 --restart unless-stopped --name mongodb -d mongodb/mongodb-community-server:latest```
 
+### Initial mongo setup
+```mongosh
+use admin
+db.createUser( { user: "WeatherPlatform", pwd: passwordPrompt(), roles: ["readWrite"] }, { w: "majority" , wtimeout: 5000 } )
+db.createUser( { user: "WeatherReporting", pwd: passwordPrompt(), roles: [ { "role": "readWrite", "db": "weather" }, { role: "readAnyDatabase", db: "admin" } ] }, { w: "majority" , wtimeout: 5000 } )
+```
+
+### API Gateway - Kong
+The API Gateway is started up with the docker profile ```gateway```.
+You can generate a new secret with
+```
+$ export WEATHER_JWT_SECRET=$(openssl rand -hex 32 | base64 -w 0)
+```
+
+### Reporting/BI Connection
+```cmd
+$ cd "C:\Program Files\MongoDB\Connector for BI\2.14\bin"
+$ mongosqld.exe /p 27017 /sampleNamespaces weather.weather /schemaName weather /schemaSource weather /schemaMode auto /sampleSize 0 --auth --mongo-username %MONGO_WEATHER_REPORTING% --mongo-password %MONGO_WEATHER_REPORTING_PASSWORD%
+```
 
 ## Making a change
 1. Make changes necessary and add unit tests

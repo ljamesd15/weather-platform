@@ -1,19 +1,50 @@
+networks:
+  weather-service:
+
 services:
+  kong:
+    container_name: weather-gateway
+    build:
+      dockerfile: kong-gateway.Dockerfile
+    networks:
+      - weather-service
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "127.0.0.1:8001:8001"
+      - "127.0.0.1:8444:8444"
+    environment:
+      KONG_DATABASE: off
+      KONG_DECLARATIVE_CONFIG: /kong/declarative/kong.yml
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_LISTEN: "0.0.0.0:8001, 0.0.0.0:8444 ssl"
+      KONG_ADMIN_GUI_URL: http://localhost:8002
+      WEATHER_JWT_SECRET: ${WEATHER_JWT_SECRET}
+    profiles:
+      - gateway
   mongodb:
     image: mongodb/mongodb-community-server:latest
     ports:
       - "27017:27017"
     profiles:
       - db
-  web:
+  app:
     container_name: weather-platform
     build:
-      dockerfile: local.Dockerfile
+      dockerfile: weather-service.Dockerfile
+    networks:
+      - weather-service
+    profiles:
+      - service
     ports:
-      - "8080:8080"
-      - "8000:8000"
+      #- "8080:8080" # Only accessible via Kong gateway
+      - "8010:8010"
     # Allows for using latest jar without rebuilding image every time
     volumes:
       - ./target:/app
     environment:
       SPRING_PROFILES_ACTIVE: local
+      MONGO_CONNECTION_STRING: "mongodb://${MONGO_WEATHER_USER}:${MONGO_WEATHER_PASSWORD}@host.docker.internal:27017/weather?authSource=admin"
