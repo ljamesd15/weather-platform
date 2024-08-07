@@ -1,0 +1,53 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+  - host: 172.19.0.1
+    name: weather_service
+    port: 8080
+    protocol: http
+    routes:
+      - name: delete_weather_data
+        tags:
+          - weather
+        methods:
+          - "DELETE"
+        paths:
+          - /deleteWeatherData
+        strip_path: true
+      - name: saveWeatherData
+        tags:
+          - weather
+        methods:
+          - "POST"
+        paths:
+          - /saveWeatherData
+        strip_path: true
+      - name: search_weather_data
+        tags:
+          - weather
+        methods:
+          - "POST"
+        paths:
+          - /searchWeatherData
+        strip_path: true
+
+consumers:
+  - custom_id: weather-events
+    tags:
+      - weather
+#    keyauth_credentials:
+#      - key: weather-events-key
+
+#plugins:
+#  - name: key-auth
+#    enabled: true
+#    service: weather-service
+#    tags:
+#      - weather
+#    config:
+#      key_in_query: false
+#      key_in_header: true
+#      key_names:
+#        - weather-events-key
+

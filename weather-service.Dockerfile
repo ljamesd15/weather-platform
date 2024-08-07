@@ -6,7 +6,7 @@ RUN apk update \
     && apk add iputils-ping
 
 # Debug port
-EXPOSE 8000
+EXPOSE 8010
 # Server port
 EXPOSE 8080
 
