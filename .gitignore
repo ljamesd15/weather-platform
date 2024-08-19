@@ -1,5 +1,4 @@
 .env
-kustomize/.env.mongo-weather-password-secret
 
 HELP.md
 target/

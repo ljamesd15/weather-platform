@@ -9,10 +9,11 @@ To start the service
 1. ```$ mvn clean package```
 2. ```$ docker compose build```
    1. First time only
-3. ```$ docker compose --profile db```
+3. [Optional] Startup Database ```$ docker compose --profile db up```
    1. If you already have a MongoDB container running you can just bring up the essential services with ```$ docker compose up``` 
    2. You can set up mongo manually using [these docs](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-community-with-docker/)
-      1. ```docker run -p 27017:27017 --restart unless-stopped --name mongodb -d mongodb/mongodb-community-server:latest```
+      1. ```$ docker run -p 27017:27017 --restart unless-stopped --name mongodb -d mongodb/mongodb-community-server:latest```
+4. [Docker] Run the service and gateway ```$ docker compose --profile gateway --profile service up```
 
 ### Initial mongo setup
 ```mongosh

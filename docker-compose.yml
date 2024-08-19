@@ -5,7 +5,7 @@ services:
   kong:
     container_name: weather-gateway
     build:
-      dockerfile: kong-gateway.Dockerfile
+      dockerfile: docker/kong-gateway.Dockerfile
     networks:
       - weather-service
     ports:
@@ -25,20 +25,23 @@ services:
       WEATHER_JWT_SECRET: ${WEATHER_JWT_SECRET}
     profiles:
       - gateway
+      - all
   mongodb:
     image: mongodb/mongodb-community-server:latest
     ports:
       - "27017:27017"
     profiles:
       - db
+      - all
   app:
     container_name: weather-platform
     build:
-      dockerfile: weather-service.Dockerfile
+      dockerfile: docker/weather-service.Dockerfile
     networks:
       - weather-service
     profiles:
       - service
+      - all
     ports:
       #- "8080:8080" # Only accessible via Kong gateway
       - "8010:8010"
@@ -46,5 +49,4 @@ services:
     volumes:
       - ./target:/app
     environment:
-      SPRING_PROFILES_ACTIVE: local
       MONGO_CONNECTION_STRING: "mongodb://${MONGO_WEATHER_USER}:${MONGO_WEATHER_PASSWORD}@host.docker.internal:27017/weather?authSource=admin"
