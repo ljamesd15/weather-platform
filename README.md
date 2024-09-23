@@ -31,8 +31,7 @@ $ export WEATHER_JWT_SECRET=$(openssl rand -hex 32 | base64 -w 0)
 
 ### Reporting/BI Connection
 ```cmd
-$ cd "C:\Program Files\MongoDB\Connector for BI\2.14\bin"
-$ mongosqld.exe /p 27017 /sampleNamespaces weather.weather /schemaName weather /schemaSource weather /schemaMode auto /sampleSize 0 --auth --mongo-username %MONGO_WEATHER_REPORTING% --mongo-password %MONGO_WEATHER_REPORTING_PASSWORD%
+$ cd "C:\Program Files\MongoDB\Connector for BI\2.14\bin" && mongosqld.exe /p 27017 /sampleNamespaces weather.weather /schemaName weather /schemaSource weather /schemaMode auto /sampleSize 0 --auth --mongo-username %MONGO_WEATHER_REPORTING% --mongo-password %MONGO_WEATHER_REPORTING_PASSWORD%
 ```
 
 ## Making a change
