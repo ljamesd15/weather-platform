@@ -27,7 +27,10 @@ services:
       - gateway
       - all
   mongodb:
+    container_name: weather-mongodb
     image: mongodb/mongodb-community-server:latest
+    networks:
+      - weather-service
     ports:
       - "27017:27017"
     profiles:
@@ -49,4 +52,4 @@ services:
     volumes:
       - ./target:/app
     environment:
-      MONGO_CONNECTION_STRING: "mongodb://${MONGO_WEATHER_USER}:${MONGO_WEATHER_PASSWORD}@host.docker.internal:27017/weather?authSource=admin"
+      MONGO_CONNECTION_STRING: "mongodb://${MONGO_WEATHER_USER}:${MONGO_WEATHER_PASSWORD}@mongodb:27017/weather?authSource=admin"
