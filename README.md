@@ -3,17 +3,8 @@
 ## Tech stack
 Database: MongoDB
 Backend service: Java + Spring
-
-## Local development
-To start the service
-1. ```$ mvn clean package```
-2. ```$ docker compose build```
-   1. First time only
-3. [Optional] Startup Database ```$ docker compose --profile db up```
-   1. If you already have a MongoDB container running you can just bring up the essential services with ```$ docker compose up``` 
-   2. You can set up mongo manually using [these docs](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-community-with-docker/)
-      1. ```$ docker run -p 27017:27017 --restart unless-stopped --name mongodb -d mongodb/mongodb-community-server:latest```
-4. [Docker] Run the service and gateway ```$ docker compose --profile gateway --profile service up```
+API Gateway: Kong
+Metrics: Prometheus + Grafana
 
 ### Initial mongo setup
 ```mongosh
@@ -33,6 +24,22 @@ $ export WEATHER_JWT_SECRET=$(openssl rand -hex 32 | base64 -w 0)
 ```cmd
 $ cd "C:\Program Files\MongoDB\Connector for BI\2.14\bin" && mongosqld.exe /p 27017 /sampleNamespaces weather.weather /schemaName weather /schemaSource weather /schemaMode auto /sampleSize 0 --auth --mongo-username %MONGO_WEATHER_REPORTING% --mongo-password %MONGO_WEATHER_REPORTING_PASSWORD%
 ```
+
+### Monitoring: Prometheus/Grafana
+First time setup may require port enabling for Prometheus to scrape metrics from services
+
+1. ```$ sudo ufw allow 8080 & sudo ufw enable```
+
+## Local development
+To start the service
+1. ```$ mvn clean package```
+2. ```$ docker compose build```
+   1. First time only
+3. [Optional] Startup Database ```$ docker compose --profile db up```
+   1. If you already have a MongoDB container running you can just bring up the essential services with ```$ docker compose up```
+   2. You can set up mongo manually using [these docs](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-community-with-docker/)
+      1. ```$ docker run -p 27017:27017 --restart unless-stopped --name mongodb -d mongodb/mongodb-community-server:latest```
+4. [Docker] Run the service and gateway ```$ docker compose --profile gateway --profile service up```
 
 ## Making a change
 1. Make changes necessary and add unit tests

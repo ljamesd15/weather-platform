@@ -36,6 +36,30 @@ services:
     profiles:
       - db
       - all
+  grafana:
+    container_name: grafana
+    image: grafana/grafana-enterprise:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - weather-service
+    profiles:
+      - grafana
+      - metrics
+      - all
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    volumes:
+      - "./prometheus/weather-prometheus.yml:/etc/prometheus/prometheus.yml"
+    ports:
+      - "9090:9090"
+    networks:
+      - weather-service
+    profiles:
+      - prom
+      - metrics
+      - all
   app:
     container_name: weather-platform
     build:

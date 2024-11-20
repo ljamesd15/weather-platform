@@ -7,6 +7,14 @@ services:
     port: 8080
     protocol: http
     routes:
+      - name: weather_platform_metrics
+        tags:
+          - metrics
+        methods:
+          - "GET"
+        paths:
+          - /actuator/prometheus
+        strip_path: false
       - name: delete_weather_data
         tags:
           - weather

@@ -10,5 +10,13 @@ mongodb:
   connection-string: ""
   is-connection-secret: false
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      show-details: always
+
 server:
   port: 8080
