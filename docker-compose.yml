@@ -22,6 +22,8 @@ services:
       KONG_ADMIN_ERROR_LOG: /dev/stderr
       KONG_ADMIN_LISTEN: "0.0.0.0:8001, 0.0.0.0:8444 ssl"
       KONG_ADMIN_GUI_URL: http://localhost:8002
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      PROMETHEUS_JWT_SECRET: ${PROMETHEUS_JWT_SECRET}
       WEATHER_JWT_SECRET: ${WEATHER_JWT_SECRET}
     profiles:
       - gateway

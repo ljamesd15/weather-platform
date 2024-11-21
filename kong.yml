@@ -2,6 +2,19 @@ _format_version: "3.0"
 _transform: true
 
 services:
+  - name: event-handler
+    host: event-handler
+    port: 8081
+    protocol: http
+    routes:
+      - name: event_handler_metrics
+        tags:
+          - metrics
+        methods:
+          - "GET"
+        paths:
+          - /event-handler/actuator/prometheus
+        strip_path: false
   - name: weather-service
     host: weather-platform
     port: 8080
@@ -13,7 +26,7 @@ services:
         methods:
           - "GET"
         paths:
-          - /actuator/prometheus
+          - /weather/actuator/prometheus
         strip_path: false
       - name: delete_weather_data
         tags:
@@ -21,15 +34,15 @@ services:
         methods:
           - "DELETE"
         paths:
-          - /deleteWeatherData
+          - /weather/deleteWeatherData
         strip_path: false
-      - name: saveWeatherData
+      - name: save_weather_data
         tags:
           - weather
         methods:
           - "POST"
         paths:
-          - /saveWeatherData
+          - /weather/saveWeatherData
         strip_path: false
       - name: search_weather_data
         tags:
@@ -37,10 +50,45 @@ services:
         methods:
           - "POST"
         paths:
-          - /searchWeatherData
+          - /weather/searchWeatherData
         strip_path: false
 
 plugins:
+  # Access control lists
+  - name: acl
+    instance_name: weather-service-admin-acl
+    service: weather-service
+    config:
+      allow:
+        - admins
+  - name: acl
+    instance_name: event-handler-admin-acl
+    service: event-handler
+    config:
+      allow:
+        - admins
+  - name: acl
+    instance_name: save-weather-acl
+    route: save_weather_data
+    config:
+      allow:
+        - admins
+        - publishers
+  - name: acl
+    instance_name: weather-metrics-acl
+    route: weather_platform_metrics
+    config:
+      allow:
+        - admins
+        - metrics
+  - name: acl
+    instance_name: event-handler-metrics-acl
+    route: event_handler_metrics
+    config:
+      allow:
+        - admins
+        - metrics
+  # JSON Web Tokens
   - name: jwt
     service: weather-service
     enabled: true
@@ -49,9 +97,35 @@ plugins:
         - exp
         - nbf
       secret_is_base64: true
+  - name: jwt
+    service: event-handler
+    enabled: true
+    config:
+      claims_to_verify:
+        - exp
+        - nbf
+      secret_is_base64: true
 
 consumers:
+  - username: ljd
+    acls:
+      - group: admins
+    jwt_secrets:
+      - algorithm: "HS512"
+        key: admin-jwt-key
+        secret: $ADMIN_JWT_SECRET
+  - username: prometheus
+    acls:
+      - group: metrics
+    tags:
+      - metrics
+    jwt_secrets:
+      - algorithm: "HS512"
+        key: prometheus-jwt-key
+        secret: $PROMETHEUS_JWT_SECRET
   - username: weather-events
+    acls:
+      - group: publishers
     tags:
       - weather
     jwt_secrets:

@@ -1,4 +1,4 @@
-envsubst '$WEATHER_JWT_SECRET' < /kong/declarative/kong-with-vars.yml > /kong/declarative/kong.yml
+envsubst '$ADMIN_JWT_SECRET $PROMETHEUS_JWT_SECRET $WEATHER_JWT_SECRET' < /kong/declarative/kong-with-vars.yml > /kong/declarative/kong.yml
 #cat /kong/declarative/kong.yml
 
 # usage: file_env VAR [DEFAULT]

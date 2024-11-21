@@ -1,15 +1,3 @@
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-spring:
-  jackson:
-    serialization:
-      FAIL_ON_EMPTY_BEANS: false
-mongodb:
-  database-name: weather
-  connection-string: ""
-  is-connection-secret: false
-
 management:
   endpoints:
     web:
@@ -17,6 +5,20 @@ management:
         include: "*"
     health:
       show-details: always
+mongodb:
+  database-name: weather
+  connection-string: ""
+  is-connection-secret: false
 
 server:
+  servlet:
+    context-path: /weather
   port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+spring:
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
